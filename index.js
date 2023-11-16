@@ -20,5 +20,15 @@ app.use(cors());
 console.log("Welcome");
 
 // MONGOOSE SETUP
+const PORT = process.env.PORT || 9000;
+const MONGO_URL = process.env.MONGO_URL;
+console.log(MONGO_URL)
+mongoose.connect(MONGO_URL, {
+    useMongoClient:true,
+})
+    .then(async () => {
+        app.listen(PORT, () => console.log(`Running on - ${PORT}`));
+    })
+    .catch((error) => console.log(`${error} did not connect`));
 
 
