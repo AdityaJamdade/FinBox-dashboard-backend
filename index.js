@@ -21,14 +21,17 @@ console.log("Welcome");
 
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 9000;
+
 const MONGO_URL = process.env.MONGO_URL;
 console.log(MONGO_URL)
-mongoose.connect(MONGO_URL, {
-    useMongoClient:true,
-})
-    .then(async () => {
-        app.listen(PORT, () => console.log(`Running on - ${PORT}`));
-    })
-    .catch((error) => console.log(`${error} did not connect`));
 
-
+const options = {
+    useMongoClient: true,
+    autoIndex: false, // Don't build indexes
+    reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
+    reconnectInterval: 500, // Reconnect every 500ms
+    poolSize: 10, // Maintain up to 10 socket connections
+    // If not connected, return errors immediately rather than waiting for reconnect
+    bufferMaxEntries: 0
+};
+mongoose.connect(MONGO_URL, options);
