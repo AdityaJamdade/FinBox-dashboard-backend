@@ -17,21 +17,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-console.log("Welcome");
-
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 9000;
 
 const MONGO_URL = process.env.MONGO_URL;
-console.log(MONGO_URL)
 
-const options = {
-    useMongoClient: true,
-    autoIndex: false, // Don't build indexes
-    reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
-    reconnectInterval: 500, // Reconnect every 500ms
-    poolSize: 10, // Maintain up to 10 socket connections
-    // If not connected, return errors immediately rather than waiting for reconnect
-    bufferMaxEntries: 0
-};
-mongoose.connect(MONGO_URL, options);
+mongoose.connect(MONGO_URL)
+    .then(
+        () => { console.log(`Database connection`) }
+    )
+    .catch(
+        (err) => console.log(err)
+    )
+
+app.listen(PORT, () => console.log(`Server up on ${PORT}`));
