@@ -1,10 +1,10 @@
 import express from "express";
 import bodyParser from "body-parser";
-import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
+import { connectToMongo } from "./db.js"
 
 // CONFIGURATIONS
 dotenv.config();
@@ -19,15 +19,6 @@ app.use(cors());
 
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 9000;
-
-const MONGO_URL = process.env.MONGO_URL;
-
-mongoose.connect(MONGO_URL)
-    .then(
-        () => { console.log(`Database connection`) }
-    )
-    .catch(
-        (err) => console.log(err)
-    )
+connectToMongo()
 
 app.listen(PORT, () => console.log(`Server up on ${PORT}`));
