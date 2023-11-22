@@ -27,5 +27,7 @@ app.use("/kpi", kpiRoutes);
 // MONGOOSE SETUP
 connectToMongo()
 
+KPI.insertMany(kpis);
+
 const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => console.log(`Server up on ${PORT}`));
