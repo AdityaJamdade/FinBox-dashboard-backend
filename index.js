@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
+import mongoose from "mongoose";
 import { connectToMongo } from "./db.js"
 import kpiRoutes from "./routes/kpi.js"
 import KPI from "./models/KPI.js"
@@ -23,11 +24,13 @@ app.use(cors());
 // ROUTES
 app.use("/kpi", kpiRoutes);
 
+const PORT = process.env.PORT || 9000;
 
 // MONGOOSE SETUP
-connectToMongo()
+const MONGO_URL = process.env.MONGO_URL;
+async function main() {
+    await mongoose.connect(MONGO_URL);
+    app.listen(PORT, () => console.log(`Server up on ${PORT}`));
+}
+main().catch(err => console.log(err));
 
-KPI.insertMany(kpis);
-
-const PORT = process.env.PORT || 9000;
-app.listen(PORT, () => console.log(`Server up on ${PORT}`));
