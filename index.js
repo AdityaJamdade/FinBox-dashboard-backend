@@ -28,9 +28,22 @@ const PORT = process.env.PORT || 9000;
 
 // MONGOOSE SETUP
 const MONGO_URL = process.env.MONGO_URL;
-async function main() {
-    await mongoose.connect(MONGO_URL);
+mongoose.Promise = global.Promise;
+let db;
+mongoose.connect(MONGO_URL, { useMongoClient: true, })
+  .then(async () => { 
     app.listen(PORT, () => console.log(`Server up on ${PORT}`));
-}
-main().catch(err => console.log(err));
+    db = mongoose.connection
+    console.log(db.name)
+    // await mongoose.connection.db.dropDatabase();
+    KPI.insertMany(kpis);
+
+  })
+  .catch((err) => console.log(err))
+
+// async function main() {
+//   await mongoose.connect(MONGO_URL, { useMongoClient: true, });
+//   app.listen(PORT, () => console.log(`Server up on ${PORT}`));
+// }
+// main().catch(err => console.log(err));
 
