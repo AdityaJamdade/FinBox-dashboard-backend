@@ -35,8 +35,10 @@ mongoose.connect(MONGO_URL)
     app.listen(PORT, () => console.log(`Server up on ${PORT}`));
     db = mongoose.connection
     console.log(db.name)
-    await mongoose.connection.db.dropDatabase();
-    await KPI.insertMany(kpis);
+
+    // ADDING DATA ONCE
+    // await mongoose.connection.db.dropDatabase();
+    // await KPI.insertMany(kpis);
 
   })
   .catch((err) => console.log(err))
