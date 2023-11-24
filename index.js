@@ -40,10 +40,3 @@ mongoose.connect(MONGO_URL)
 
   })
   .catch((err) => console.log(err))
-
-// async function main() {
-//   await mongoose.connect(MONGO_URL, { useMongoClient: true, });
-//   app.listen(PORT, () => console.log(`Server up on ${PORT}`));
-// }
-// main().catch(err => console.log(err));
-
