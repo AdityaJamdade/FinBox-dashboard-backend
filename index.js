@@ -30,13 +30,13 @@ const PORT = process.env.PORT || 9000;
 const MONGO_URL = process.env.MONGO_URL;
 mongoose.Promise = global.Promise;
 let db;
-mongoose.connect(MONGO_URL, { useMongoClient: true, })
-  .then(async () => { 
+mongoose.connect(MONGO_URL)
+  .then(async () => {
     app.listen(PORT, () => console.log(`Server up on ${PORT}`));
     db = mongoose.connection
     console.log(db.name)
-    // await mongoose.connection.db.dropDatabase();
-    KPI.insertMany(kpis);
+    await mongoose.connection.db.dropDatabase();
+    await KPI.insertMany(kpis);
 
   })
   .catch((err) => console.log(err))
