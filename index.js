@@ -7,9 +7,9 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import kpiRoutes from "./routes/kpi.js"
 import productRoutes from "./routes/product.js"
-import Product from "./models/Product.js"
 import KPI from "./models/KPI.js"
-import { kpis } from "./data/data.js"
+import Product from "./models/Product.js"
+import { kpis, products } from "./data/data.js"
 
 // CONFIGURATIONS
 dotenv.config();
@@ -41,6 +41,7 @@ mongoose.connect(MONGO_URL)
     // ADDING DATA ONCE
     // await mongoose.connection.db.dropDatabase();
     // await KPI.insertMany(kpis);
+    // await Product.insertMany(products);
 
   })
   .catch((err) => console.log(err))
