@@ -45,8 +45,8 @@ mongoose.connect(MONGO_URL)
     // await mongoose.connection.db.dropDatabase();
     // await KPI.insertMany(kpis);
     // await Product.insertMany(products);
+    // await Transaction.insertMany(transactions);
     // await Transaction.deleteMany({});
-    await Transaction.insertMany(transactions);
 
   })
   .catch((err) => console.log(err))
