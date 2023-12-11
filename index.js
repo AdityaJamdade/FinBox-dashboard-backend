@@ -42,10 +42,11 @@ mongoose.connect(MONGO_URL)
     console.log(db.name)
 
     // ADDING DATA ONCE
-    await mongoose.connection.db.dropDatabase();
+    // await mongoose.connection.db.dropDatabase();
     // await KPI.insertMany(kpis);
     // await Product.insertMany(products);
     // await Transaction.insertMany(transactions);
+
     // await Transaction.deleteMany({});
 
   })
