@@ -69,7 +69,7 @@ const KPISchema = new Schema(
             currency: "USD",
             get: (v) => v / 100
         },
-        expensesByCateogry: {
+        expensesByCategory: {
             type: Schema.Types.Mixed,
             of: {
                 type: mongoose.Types.Currency,
